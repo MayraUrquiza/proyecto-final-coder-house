@@ -1,0 +1,60 @@
+[
+  {
+    "products": [
+      {
+        "name": "Escuadra",
+        "description": "Escuadra plástica Pizzini",
+        "code": 1001,
+        "price": 123.45,
+        "thumbnail": "https://cdn2.iconfinder.com/data/icons/draw-and-design/512/esquadra-2-512.png",
+        "stock": 8,
+        "timestamp": 1635625316405,
+        "id": 1
+      }
+    ],
+    "timestamp": 1635627596917,
+    "id": 3
+  },
+  {
+    "products": [
+      {
+        "name": "Escuadra",
+        "description": "Escuadra plástica Pizzini",
+        "code": 1001,
+        "price": 123.45,
+        "thumbnail": "https://cdn2.iconfinder.com/data/icons/draw-and-design/512/esquadra-2-512.png",
+        "stock": 8,
+        "timestamp": 1635625316405,
+        "id": 1
+      }
+    ],
+    "timestamp": 1635627724770,
+    "id": 4
+  },
+  {
+    "id": 1,
+    "timestamp": 1635625316405,
+    "products": [
+      {
+        "name": "Calculadora",
+        "description": "Calculadora científica Casio",
+        "code": 1002,
+        "price": 234.56,
+        "thumbnail": "https://cdn1.iconfinder.com/data/icons/ui-basic-18/32/calculator-512.png",
+        "stock": 3,
+        "timestamp": 1635625316405,
+        "id": 2
+      },
+      {
+        "name": "Escuadra",
+        "description": "Escuadra plástica Pizzini",
+        "code": 1001,
+        "price": 123.45,
+        "thumbnail": "https://cdn2.iconfinder.com/data/icons/draw-and-design/512/esquadra-2-512.png",
+        "stock": 5,
+        "timestamp": 1635625316405,
+        "id": 1
+      }
+    ]
+  }
+]

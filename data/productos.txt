@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Calculadora",
+    "description": "Calculadora científica Casio",
+    "code": 1002,
+    "price": 234.56,
+    "thumbnail": "https://cdn1.iconfinder.com/data/icons/ui-basic-18/32/calculator-512.png",
+    "stock": 0,
+    "timestamp": 1635625316405,
+    "id": 2
+  },
+  {
+    "name": "Globo Terráqueo",
+    "description": "Globo terraqueo Maped",
+    "code": 1003,
+    "price": 345.67,
+    "thumbnail": "https://cdn0.iconfinder.com/data/icons/map-location-set-2/64/x-13-512.png",
+    "stock": 8,
+    "timestamp": 1635625316405,
+    "id": 3
+  },
+  {
+    "name": "Escuadra",
+    "description": "Escuadra plástica Pizzini",
+    "code": 1001,
+    "price": 123.45,
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/draw-and-design/512/esquadra-2-512.png",
+    "stock": 5,
+    "timestamp": 1635625316405,
+    "id": 1
+  },
+  {
+    "name": "prueba",
+    "description": "una prueba",
+    "code": 1004,
+    "price": 300,
+    "thumbnail": "lalalalala",
+    "stock": 3,
+    "timestamp": 1635630908330,
+    "id": 4
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "name": "proyecto-final-coder-house",
+  "version": "1.0.0",
+  "description": "Proyecto final del curso de backend de Coder House",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node ./src/server.js",
+    "watch": "nodemon --exec babel-node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MayraUrquiza/proyecto-final-coder-house.git"
+  },
+  "author": "Mayra Urquiza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MayraUrquiza/proyecto-final-coder-house/issues"
+  },
+  "homepage": "https://github.com/MayraUrquiza/proyecto-final-coder-house#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.0"
+  }
+}

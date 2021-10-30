@@ -11,6 +11,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/productos", routerProducts);
 app.use("/api/carrito", routerCarts);
 
+app.use((req, res) => {
+  const { method, originalUrl } = req;
+
+  res.status(400).json({
+    error: -2,
+    description: `Ruta ${originalUrl} método ${method} no implementada.`,
+  });
+});
+
 const server = app.listen(PORT, () =>
   console.log(`Listen on ${server.address().port}`)
 );

@@ -9,7 +9,7 @@ class AuthController {
           .status(403)
           .json({
             error: -1,
-            description: `Usuario sin permiso para ejecutar ${method} en ${originalUrl}`,
+            description: `Usuario sin permiso para ejecutar ${method} en ${originalUrl}.`,
           });
 
       next();

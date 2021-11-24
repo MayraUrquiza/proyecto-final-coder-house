@@ -3,7 +3,7 @@ import { join } from "path";
 
 const FILE_PATH = "data/";
 
-class Container {
+class FileContainer {
   constructor(name) {
     this.name = join(process.cwd(), FILE_PATH.concat(name));
   }
@@ -25,11 +25,12 @@ class Container {
     }
   }
 
-  async update(entry) {
+  async update(id, entry) {
     try {
       const content = await this.getAll();
-      content.push(entry);
+      content.push({id: parseInt(id), ...entry});
       await this.persist(content);
+      return {id: parseInt(id), ...entry};
     } catch (error) {
       console.log("ERROR:", error);
     }
@@ -38,7 +39,7 @@ class Container {
   async getById(id) {
     try {
       const content = await this.getAll();
-      return content.find((entry) => entry.id === id);
+      return content.find((entry) => entry.id === parseInt(id));
     } catch (error) {
       console.log("ERROR:", error);
     }
@@ -56,20 +57,12 @@ class Container {
   async deleteById(id) {
     try {
       const content = await this.getAll();
-      const filteredContent = content.filter((entry) => entry.id !== id);
+      const filteredContent = content.filter((entry) => entry.id !== parseInt(id));
       await this.persist(filteredContent);
-    } catch (error) {
-      console.log("ERROR:", error);
-    }
-  }
-
-  async deleteAll() {
-    try {
-      await this.persist([]);
     } catch (error) {
       console.log("ERROR:", error);
     }
   }
 }
 
-export default (fileName) => new Container(fileName);
+export default FileContainer;

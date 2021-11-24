@@ -4,6 +4,7 @@ import CartController from "../api/cartController";
 const routerCarts = Router();
 const cartController = new CartController();
 
+routerCarts.get("/", cartController.getCarts);
 routerCarts.get("/:id/productos", cartController.getProducts);
 routerCarts.post("/", cartController.saveCart);
 routerCarts.post("/:id/productos", cartController.saveProduct);

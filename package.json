@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/MayraUrquiza/proyecto-final-coder-house#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "firebase-admin": "^10.0.0",
+    "mongoose": "^6.0.13"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

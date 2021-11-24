@@ -1,21 +1,24 @@
-import container from "../persistence/Container";
+import db from "../daos/DAO";
 
 class CartController {
   constructor() {
-    this.cartContainer = container("carritos.txt");
-    this.productContainer = container("productos.txt");
+    this.productsCollection = db('productos');
+    this.cartsCollection = db('carritos');
   }
+
+  getCarts = async (req, res) => {
+    try {
+      const carts = await this.cartsCollection.getAll();
+      res.status(200).json({ carts })
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  };
 
   getProducts = async (req, res) => {
     try {
       const { id } = req.params;
-
-      if (isNaN(parseInt(id)))
-        return res
-          .status(400)
-          .json({ error: "El dato pasado como parámetro es incorrecto." });
-
-      const cart = await this.cartContainer.getById(parseInt(id));
+      const cart = await this.cartsCollection.getById(id);
 
       if (!cart) res.status(400).json({ error: "Carrito no encontrado." });
       else res.status(200).json({ products: cart.products });
@@ -27,10 +30,7 @@ class CartController {
   updateProduct = async (req, res) => {
     const { productId } = req.body;
 
-    if (isNaN(parseInt(productId)))
-      throw new Error("El id de producto es incorrecto.");
-
-    const product = await this.productContainer.getById(parseInt(productId));
+    const product = await this.productsCollection.getById(productId);
 
     if (!product)
       throw new Error("Producto no encontrado.");
@@ -40,10 +40,7 @@ class CartController {
 
     const updatedProduct = { ...product, stock: product.stock - 1 };
 
-    await this.productContainer.deleteById(parseInt(productId));
-    await this.productContainer.update(updatedProduct);
-
-    return updatedProduct;
+    return await this.productsCollection.update(productId, updatedProduct);
   };
 
   saveCart = async (req, res) => {
@@ -55,11 +52,11 @@ class CartController {
         timestamp: Date.now(),
       };
 
-      const id = await this.cartContainer.save(cart);
+      const result = await this.cartsCollection.save(cart);
 
       res
         .status(200)
-        .json({ msg: "El carrito fue creado.", cart: { ...cart, id } });
+        .json({ msg: "El carrito fue creado.", cart: result });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -68,13 +65,7 @@ class CartController {
   saveProduct = async (req, res) => {
     try {
       const { id } = req.params;
-
-      if (isNaN(parseInt(id)))
-        return res
-          .status(400)
-          .json({ error: "El dato pasado como parámetro es incorrecto." });
-
-      const cart = await this.cartContainer.getById(parseInt(id));
+      const cart = await this.cartsCollection.getById(id);
 
       if (!cart)
         return res.status(400).json({ error: "Carrito no encontrado." });
@@ -83,10 +74,9 @@ class CartController {
 
       const updatedCart = { ...cart, products: [...cart.products, product] };
 
-      await this.cartContainer.deleteById(parseInt(id));
-      await this.cartContainer.update(updatedCart);
+      const result = await this.cartsCollection.update(id, updatedCart);
 
-      res.status(200).json({ msg: "El carrito fue actualizado.", cart: updatedCart });
+      res.status(200).json({ msg: "El carrito fue actualizado.", cart: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -96,7 +86,7 @@ class CartController {
     try {
       const { id } = req.params;
 
-      await this.cartContainer.deleteById(parseInt(id));
+      await this.cartsCollection.deleteById(id);
 
       res.status(200).json({ msg: "El carrito fue eliminado." });
     } catch (error) {
@@ -108,21 +98,13 @@ class CartController {
     try {
       const { id, id_prod } = req.params;
 
-      if (isNaN(parseInt(id)) || isNaN(parseInt(id_prod)))
-        return res
-          .status(400)
-          .json({ error: "Los datos pasados como parámetro son incorrectos." });
-
-      const cart = await this.cartContainer.getById(parseInt(id));
+      const cart = await this.cartsCollection.getById(id);
 
       if (!cart) res.status(400).json({ error: "Carrito no encontrado." });
 
-      const updatedCart = { ...cart, products: [...cart.products.filter(prod => prod.id !== parseInt(id_prod))] };
+      const result = await this.cartsCollection.deleteProduct(id_prod, cart);
 
-      await this.cartContainer.deleteById(parseInt(id));
-      await this.cartContainer.update(updatedCart);
-
-      res.status(200).json({ msg: "El producto fue eliminado del carrito.", cart: updatedCart });
+      res.status(200).json({ msg: "El producto fue eliminado del carrito.", cart: result });
     } catch (error) {
       res.status(500).json({ error });
     }

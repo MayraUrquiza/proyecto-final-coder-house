@@ -1,8 +1,8 @@
 {
   "availablePersistence": ["mongoDB", "firestore", "filesystem"],
-  "useDatabase": "mongoDB", 
+  "useDatabase": "mongoDB",
   "mongoDB": {
-    "connectionString": "mongodb://localhost:27017/ecommerce",
+    "connectionString": "mongodb+srv://coderhouseuser:qyLzaqfhTcubpIU5@cluster0.t3epz.mongodb.net/ecommerce?retryWrites=true&w=majority",
     "options": {
       "serverSelectionTimeoutMS": 5000
     }

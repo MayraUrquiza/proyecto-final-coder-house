@@ -1,5 +1,5 @@
 import MongoDBContainer from "../persistence/MongoDBContainer";
-import ProductSchema from "../schemas/product";
+import ProductSchema from "../models/product";
 
 class ProductsMongoDBDAO extends MongoDBContainer {
   constructor() {

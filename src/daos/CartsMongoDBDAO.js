@@ -1,5 +1,5 @@
 import MongoDBContainer from "../persistence/MongoDBContainer";
-import CartSchema from "../schemas/cart";
+import CartSchema from "../models/cart";
 
 class CartsMongoDBDAO extends MongoDBContainer {
   constructor() {

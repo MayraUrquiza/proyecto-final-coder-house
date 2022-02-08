@@ -18,9 +18,16 @@
   },
   "homepage": "https://github.com/MayraUrquiza/proyecto-final-coder-house#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
     "firebase-admin": "^10.0.0",
-    "mongoose": "^6.0.13"
+    "mongoose": "^6.0.13",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

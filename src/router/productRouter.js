@@ -1,6 +1,6 @@
 import { Router } from "express";
-import AuthController from "../api/authController";
-import ProductController from "../api/productController";
+import AuthController from "../controller/authController";
+import ProductController from "../controller/productController";
 
 const routerProducts = Router();
 const authController = new AuthController();

@@ -1,0 +1,99 @@
+<div class="contenedor__todo">
+  <div class="caja__trasera">
+    <div class="caja__trasera-login">
+      <h3>¿Ya tienes una cuenta?</h3>
+      <p>Inicia sesión para entrar en la página</p>
+      <button id="btn__iniciar-sesion" onclick="return login()">Iniciar Sesión</button>
+    </div>
+    <div class="caja__trasera-register">
+      <h3>¿Aún no tienes una cuenta?</h3>
+      <p>Regístrate para poder iniciar sesión</p>
+      <button
+        id="btn__registrarse"
+        onclick="return register()"
+      >Registrarse</button>
+    </div>
+  </div>
+
+  <div class="contenedor__login-register">
+    <form action="/api/auth/login" method="POST" class="formulario__login">
+      <h2>Iniciar Sesión</h2>
+      <input
+        type="text"
+        placeholder="Correo Electrónico"
+        id="email"
+        name="email"
+        required="true"
+      />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        id="password"
+        name="password"
+        required="true"
+      />
+      <button type="submit">Entrar</button>
+    </form>
+
+    <form
+      action="/api/auth/register"
+      method="POST"
+      class="formulario__register"
+    >
+      <h2>Registrarse</h2>
+      <input
+        type="text"
+        placeholder="Nombre Completo"
+        id="name"
+        name="name"
+        required="true"
+      />
+      <input
+        type="text"
+        placeholder="Edad"
+        id="age"
+        name="age"
+        required="true"
+      />
+      <input
+        type="text"
+        placeholder="Dirección"
+        id="address"
+        name="address"
+        required="true"
+      />
+      <input
+        type="text"
+        placeholder="Teléfono"
+        id="phone"
+        name="phone"
+        required="true"
+      />
+      <input
+        type="text"
+        placeholder="Correo Electrónico"
+        id="email"
+        name="email"
+        required="true"
+      />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        id="password"
+        name="password"
+        required="true"
+      />
+      <input
+        type="file"
+        accept=".jpg, .png, .jpeg"
+        placeholder="Agregar Foto"
+        id="image"
+        name="image"
+        required="true"
+      />
+      <button>Registrarse</button>
+    </form>
+
+  </div>
+
+</div>

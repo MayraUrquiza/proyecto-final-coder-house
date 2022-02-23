@@ -6,6 +6,7 @@ import {
   NODEMAILER_PORT,
 } from "../config";
 import nodemailer from "nodemailer";
+import logger from "../utils/logger";
 
 class MailController {
   static sendMail = async (to, subject, content, attachmentPaths = []) => {
@@ -29,7 +30,7 @@ class MailController {
     try {
       await transporter.sendMail(options);
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 

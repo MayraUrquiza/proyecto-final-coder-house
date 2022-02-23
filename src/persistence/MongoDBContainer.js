@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import logger from "../utils/logger";
 
 class MongoDBContainer {
   constructor(model, schema) {
@@ -11,7 +12,7 @@ class MongoDBContainer {
       const result = await newDocument.save();
       return result._id;
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -20,7 +21,7 @@ class MongoDBContainer {
       await this.model.updateOne({ _id: id }, { $set: { ...entry } });
       return { ...entry, _id: id };
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -29,7 +30,7 @@ class MongoDBContainer {
       const product = await this.model.findOne({ _id: id });
       return product.toObject();
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -46,7 +47,7 @@ class MongoDBContainer {
     try {
       await this.model.deleteOne({ _id: id });
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 }

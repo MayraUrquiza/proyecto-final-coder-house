@@ -13,6 +13,7 @@ import { PORT, MONGO_ATLAS_DATABASE_URI, MODE } from "./config";
 import cluster from "cluster";
 import * as os from "os";
 import routerErrors from "./router/errorRouter";
+import logger from "./utils/logger.js";
 
 const app = express();
 
@@ -58,6 +59,8 @@ app.use("/error", routerErrors);
 app.use((req, res) => {
   const { method, originalUrl } = req;
 
+  logger.warn(`Ruta ${originalUrl} método ${method} no implementada.`);
+
   res.status(400).json({
     error: -2,
     description: `Ruta ${originalUrl} método ${method} no implementada.`,
@@ -76,7 +79,7 @@ if (MODE === "CLUSTER" && cluster.isPrimary) {
   });
 } else {
   const server = app.listen(PORT, () =>
-    console.log(`Listen on ${server.address().port}`)
+    logger.info(`Listen on ${server.address().port}`)
   );
-  server.on("error", (error) => console.log(`Error en el servidor ${error}`));
+  server.on("error", (error) => logger.error(`Error en el servidor ${error}`));
 }

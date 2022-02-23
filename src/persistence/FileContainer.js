@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { join } from "path";
+import logger from "../utils/logger";
 
 const FILE_PATH = "data/";
 
@@ -21,7 +22,7 @@ class FileContainer {
       await this.persist(content);
       return id;
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -32,7 +33,7 @@ class FileContainer {
       await this.persist(content);
       return {id: parseInt(id), ...entry};
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -41,7 +42,7 @@ class FileContainer {
       const content = await this.getAll();
       return content.find((entry) => entry.id === parseInt(id));
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -60,7 +61,7 @@ class FileContainer {
       const filteredContent = content.filter((entry) => entry.id !== parseInt(id));
       await this.persist(filteredContent);
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 }

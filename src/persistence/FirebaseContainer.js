@@ -1,4 +1,5 @@
 import { db } from "../../db/connection";
+import logger from "../utils/logger";
 
 class FirebaseContainer {
   constructor(collection) {
@@ -10,7 +11,7 @@ class FirebaseContainer {
       const result = await db(this.collection).add(entry);
       return result._path.segments[1]
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -20,7 +21,7 @@ class FirebaseContainer {
       await doc.update(entry);
       return {...entry, id};
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -31,7 +32,7 @@ class FirebaseContainer {
 
       return {...item.data(), id};
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 
@@ -53,7 +54,7 @@ class FirebaseContainer {
       const doc = db(this.collection).doc(id);
       await doc.delete();
     } catch (error) {
-      console.log("ERROR:", error);
+      logger.error("ERROR:", error);
     }
   }
 }

@@ -1,0 +1,57 @@
+<header class="container-fluid bg-white position-sticky top-0">
+  <ul class="nav nav-pills mb-3 py-3 container" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+        type="button" role="tab" aria-controls="pills-profile" aria-selected="false" href="/catalogo">Productos</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button"
+        role="tab" aria-controls="pills-contact" aria-selected="false" href="/carrito">Carrito</a>
+    </li>
+    <div class="col d-flex justify-content-end">
+      <li class="nav-item" role="presentation">
+        <a type="button" href="/usuarios/perfil">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" color="white" fill="currentColor"
+            class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+          </svg>
+        </a>
+      </li>
+    </div>
+  </ul>
+</header>
+
+<div class="tab-pane container">
+  {{#if products.length}}
+  <h2 class="h4 m-4 text-primary">PRODUCTOS</h2>
+
+  <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+
+    {{#each products}}
+    <div class="col d-flex justify-content-center mb-4">
+      <div class="card shadow mb-1 rounded" style="width: 20rem;">
+        <h5 class="card-title pt-2 text-center">{{this.name}}</h5>
+        <div class="card-body image-description-container">
+          <img src="./img/{{this.thumbnail}}" class="card-img-top" alt="">
+          <p class="card-text description">{{this.description}}</p>
+        </div>
+        <div class="card-body">
+
+          <h7 class="text-secundary">Artículo: {{this.code}}</h7>
+          <h5 class="text-price">Precio: <span class="product_price">$ {{this.price}}</span></h5>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" onclick="return addProduct({{json this}})">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{else}}
+  <figure class="text-center text-secondary">
+    <h4>No hay productos disponibles.</h4>
+  </figure>
+  {{/if}}
+</div>

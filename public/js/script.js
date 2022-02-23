@@ -1,23 +1,51 @@
-const formulario_login = document.querySelector(".formulario__login");
-const formulario_register = document.querySelector(".formulario__register");
-const contenedor_login_register = document.querySelector(
-  ".contenedor__login-register"
+const form_login = document.querySelector(".form_login");
+const form_register = document.querySelector(".form_register");
+const login_register_container = document.querySelector(
+  ".login_register_container"
 );
-const caja_trasera_login = document.querySelector(".caja__trasera-login");
-const caja_trasera_register = document.querySelector(".caja__trasera-register");
+const back_box_login = document.querySelector(".back_box_login");
+const back_box_register = document.querySelector(".back_box_register");
 
 const login = () => {
-  formulario_login.style.display = "block";
-  contenedor_login_register.style.left = "10px";
-  formulario_register.style.display = "none";
-  caja_trasera_register.style.opacity = "1";
-  caja_trasera_login.style.opacity = "0";
+  form_login.style.display = "block";
+  login_register_container.style.left = "10px";
+  form_register.style.display = "none";
+  back_box_register.style.opacity = "1";
+  back_box_login.style.opacity = "0";
 };
 
 const register = () => {
-  formulario_register.style.display = "block";
-  contenedor_login_register.style.left = "410px";
-  formulario_login.style.display = "none";
-  caja_trasera_register.style.opacity = "0";
-  caja_trasera_login.style.opacity = "1";
+  form_register.style.display = "block";
+  login_register_container.style.left = "410px";
+  form_login.style.display = "none";
+  back_box_register.style.opacity = "0";
+  back_box_login.style.opacity = "1";
+};
+
+const addProduct = async (product) => {
+  const body = {
+    productId: product.id,
+  };
+
+  const res = await fetch("/api/carrito/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      admin: true,
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (res.status === 200) alert("Producto agregado al carrito!");
+};
+
+const deleteCart = async (cart) => {
+  const res = await fetch(`/api/carrito/${cart.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      admin: true,
+    },
+  });
+  if (res.status === 200) window.location.reload();
 };

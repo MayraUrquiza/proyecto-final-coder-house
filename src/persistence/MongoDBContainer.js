@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 class MongoDBContainer {
   constructor(model, schema) {
@@ -17,8 +17,8 @@ class MongoDBContainer {
 
   async update(id, entry) {
     try {
-      await this.model.updateOne({_id: id}, {$set: {...entry}});  
-      return {...entry, _id: id};
+      await this.model.updateOne({ _id: id }, { $set: { ...entry } });
+      return { ...entry, _id: id };
     } catch (error) {
       console.log("ERROR:", error);
     }
@@ -26,15 +26,17 @@ class MongoDBContainer {
 
   async getById(id) {
     try {
-      return await this.model.findOne({_id: id}).lean();
+      const product = await this.model.findOne({ _id: id });
+      return product.toObject();
     } catch (error) {
       console.log("ERROR:", error);
     }
   }
 
-  async getAll() {
+  async getAll(filter = undefined) {
     try {
-      return await this.model.find().lean();
+      const products = await this.model.find(!!filter ? filter : {});
+      return products.map((prod) => prod.toObject());
     } catch (error) {
       return [];
     }
@@ -42,7 +44,7 @@ class MongoDBContainer {
 
   async deleteById(id) {
     try {
-      await this.model.deleteOne({_id: id});
+      await this.model.deleteOne({ _id: id });
     } catch (error) {
       console.log("ERROR:", error);
     }

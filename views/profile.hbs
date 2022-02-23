@@ -1,0 +1,81 @@
+<header class="container-fluid bg-white position-sticky top-0">
+  <ul class="nav nav-pills mb-3 py-3 container" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="pills-profile-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-profile"
+        type="button"
+        role="tab"
+        aria-controls="pills-profile"
+        aria-selected="false"
+        href="/catalogo"
+      >Productos</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="pills-contact-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-contact"
+        type="button"
+        role="tab"
+        aria-controls="pills-contact"
+        aria-selected="false"
+        href="/carrito"
+      >Carrito</a>
+    </li>
+    <div class="col d-flex justify-content-end">
+      <li class="nav-item" role="presentation">
+        <a type="button" href="/usuarios/perfil">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            color="white"
+            fill="currentColor"
+            class="bi bi-person-circle"
+            viewBox="0 0 16 16"
+          >
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+            <path
+              fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+            >
+            </path>
+          </svg>
+        </a>
+      </li>
+    </div>
+  </ul>
+</header>
+
+<div class="tab-pane profile_card">
+  <div class="card" style="width: 36rem;">
+    <img src="../img/{{user.image}}" class="profile_image" />
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">Nombre</dt>
+        <dd class="col-sm-9">{{user.name}}</dd>
+
+        <dt class="col-sm-3">Edad</dt>
+        <dd class="col-sm-9">{{user.age}}</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">{{user.email}}</dd>
+
+        <dt class="col-sm-3 text-truncate">Teléfono</dt>
+        <dd class="col-sm-9">{{user.phone}}</dd>
+
+        <dt class="col-sm-3">Dirección</dt>
+        <dd class="col-sm-9">{{user.address}}</dd>
+      </dl>
+      <form action="/api/auth/logout" method="POST">
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit">Cerrar sesión</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
 import admin from "firebase-admin";
-import configData from "./config.json";
+import configData from "../src/configDB";
 
 export const db = (collection) => {
   return admin.firestore().collection(collection);
 };
 
 const connectFirestore = () => {
-  const { firestore: serviceAccount } = configData;
+  const { serviceAccount, connectionString } = configData.firestore;
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://coderhouse-ecommerce-42899.firebaseio.com",
+    databaseURL: connectionString,
   });
   console.log("Base de datos firestore conectada");
 };

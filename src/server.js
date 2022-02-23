@@ -5,19 +5,17 @@ import routerCarts from "./router/cartRouter";
 import connectDatabase from "../db/connection";
 import routerUsers from "./router/userRouter";
 import routerAuth from "./router/authRouter";
-import dotenv from 'dotenv';
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import { initializePassport } from "./utils/passport";
+import routerCatalog from "./router/catalogRouter";
+import { PORT, MONGO_ATLAS_DATABASE_URI } from "./config";
 
-dotenv.config();
-
-const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(
   session({
-    store: MongoStore.create({mongoUrl: process.env.DATABASE_URI}),
+    store: MongoStore.create({ mongoUrl: MONGO_ATLAS_DATABASE_URI }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -36,16 +34,18 @@ app.engine(
   handlebars({
     extname: "hbs",
     defaultLayout: "index.hbs",
+    helpers: {
+      json: function (context) {
+        return JSON.stringify(context);
+      },
+    },
   })
 );
 app.set("view engine", "hbs");
 
 connectDatabase();
 
-app.get("/catalogo", (req, res) => {
-  res.render("catalog", {});
-});
-
+app.use("/", routerCatalog);
 app.use("/usuarios", routerUsers);
 app.use("/api/auth", routerAuth);
 app.use("/api/productos", routerProducts);

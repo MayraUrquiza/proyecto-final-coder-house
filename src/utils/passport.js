@@ -41,6 +41,8 @@ export const initializePassport = (app) => {
             }
             return done(null, userWithId);
           });
+
+          // TODO: guardar la imagen el puclic/img
         });
       }
     )

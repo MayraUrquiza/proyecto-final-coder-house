@@ -4,7 +4,7 @@ import CartsFirebaseDAO from "./CartsFirebaseDAO";
 import ProductsFirebaseDAO from "./ProductsFirebaseDAO";
 import ProductsFileSystemDAO from "./ProductsFileSystemDAO";
 import CartsFileSystemDAO from "./CartsFileSystemDAO";
-import configData from "../../db/config.json";
+import configData from "../configDB";
 
 const getDAOFirestore = (collection) => {
   switch (collection) {

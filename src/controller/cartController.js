@@ -50,6 +50,7 @@ class CartController {
       const cart = {
         products: [product],
         timestamp: Date.now(),
+        user: req.user.id,
       };
 
       const result = await this.cartsCollection.save(cart);

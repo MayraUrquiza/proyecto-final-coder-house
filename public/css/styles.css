@@ -21,7 +21,7 @@ main {
   margin-top: 100px;
 }
 
-.contenedor__todo {
+.all_container {
   width: 100%;
   max-width: 800px;
   margin: auto;
@@ -29,7 +29,7 @@ main {
   margin-top: 200px;
 }
 
-.caja__trasera {
+.back_box {
   width: 100%;
   padding: 10px 20px;
   display: flex;
@@ -39,28 +39,28 @@ main {
   background-color: rgba(0, 128, 255, 0.5);
 }
 
-.caja__trasera div {
+.back_box div {
   margin: 100px 40px;
   color: white;
   transition: all 500ms;
 }
 
-.caja__trasera div p,
-.caja__trasera button {
+.back_box div p,
+.back_box button {
   margin-top: 30px;
 }
 
-.caja__trasera div h3 {
+.back_box div h3 {
   font-weight: 400;
   font-size: 26px;
 }
 
-.caja__trasera div p {
+.back_box div p {
   font-size: 16px;
   font-weight: 300;
 }
 
-.caja__trasera button {
+.back_box button {
   padding: 10px 40px;
   border: 2px solid #fff;
   font-size: 14px;
@@ -72,12 +72,12 @@ main {
   transition: all 300ms;
 }
 
-.caja__trasera button:hover {
+.back_box button:hover {
   background: #fff;
   color: #46a2fd;
 }
 
-.contenedor__login-register {
+.login_register_container {
   display: flex;
   align-items: center;
   width: 100%;
@@ -88,7 +88,7 @@ main {
   transition: left 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.contenedor__login-register form {
+.login_register_container form {
   width: 100%;
   padding: 80px 20px;
   background: white;
@@ -96,14 +96,14 @@ main {
   border-radius: 20px;
 }
 
-.contenedor__login-register form h2 {
+.login_register_container form h2 {
   font-size: 30px;
   text-align: center;
   margin-bottom: 20px;
   color: #46a2fd;
 }
 
-.contenedor__login-register form input {
+.login_register_container form input {
   width: 100%;
   margin-top: 20px;
   padding: 10px;
@@ -113,7 +113,7 @@ main {
   outline: none;
 }
 
-.contenedor__login-register form button {
+.login_register_container form button {
   padding: 10px 40px;
   margin-top: 40px;
   border: none;
@@ -125,10 +125,180 @@ main {
   outline: none;
 }
 
-.formulario__login {
+.form_login {
   opacity: 1;
   display: block;
 }
-.formulario__register {
+.form_register {
   display: none;
+}
+
+/* catálogo */
+
+header {
+  z-index: 100;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(
+      to bottom,
+      rgba(106, 158, 253, 0.651),
+      rgba(114, 193, 204, 0.6),
+      rgba(214, 232, 240, 0.45)
+    ),
+    url(Img/fondo.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 2px 2px 5px #999;
+}
+
+.description {
+  height: 25px;
+  overflow: hidden;
+  transition: height 0.3s ease-in 0.3s;
+  color: rgb(39, 39, 39);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description:hover {
+  height: 80px;
+  text-overflow: unset;
+  white-space: unset;
+}
+
+.text-primary {
+  color: aliceblue;
+}
+
+.text-secundary {
+  color: aliceblue;
+}
+
+.text-price {
+  color: #fff;
+}
+
+.cart_card,
+.profile_card {
+  min-height: 80vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.profile_card {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profile_image {
+  padding: 36px;
+  margin-top: -80px;
+  border-radius: 40px;
+}
+
+.hide,
+.remove {
+  display: none;
+}
+
+.btn {
+  padding: 10px 40px;
+  border: 2px solid #fff;
+  font-size: 14px;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  outline: none;
+  transition: all 300ms;
+}
+
+.btn:hover {
+  background: #fff;
+  color: #46a2fd;
+}
+
+.btn-success {
+  background: rgba(0, 128, 255, 0.5);
+  margin-bottom: 30px;
+}
+
+.btn-danger {
+  background-color: #cf2e11;
+}
+
+.card {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 128, 255, 0.5);
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+}
+
+.card-img-top {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.product_price {
+  color: aliceblue;
+}
+
+.item_cart_total {
+  color: #46a2fd;
+  font-weight: bold;
+}
+
+.image-description-container {
+  background: white;
+}
+
+.delete_button {
+  background-color: #cf2e11;
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.delete_button:hover {
+  color: #cf2e11;
+}
+
+.product_image {
+  width: -webkit-fill-available;
+  border-radius: 8px;
+}
+
+.card_cart {
+  border: solid;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: #c1bebf;
+  margin: 8px;
+}
+
+.card_product {
+  padding: 8px;
+}
+
+.delete_icon_button {
+  align-self: center;
+}
+
+.cart_column {
+  color: #46a2fd;
+  font-weight: 700;
+}
+
+.purchase_resume {
+  margin-top: 32px;
 }

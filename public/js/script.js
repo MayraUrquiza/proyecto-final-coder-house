@@ -49,3 +49,22 @@ const deleteCart = async (cart) => {
   });
   if (res.status === 200) window.location.reload();
 };
+
+const purchase = async (products, total) => {
+  const body = {
+    products,
+    total,
+  };
+
+  const res = await fetch("api/carrito/purchase", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      admin: true,
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (res.status === 200) alert("Email enviado al administrador!");
+  else alert("Hubo un error al enviar el email al administrador");
+};

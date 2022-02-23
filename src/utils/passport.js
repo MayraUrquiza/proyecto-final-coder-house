@@ -2,6 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { createHash, isValidPassword } from "./bcrypt.js";
 import { User } from "../models/user.js";
+import MailController from "../controller/mailController.js";
 
 export const getPassport = () => {
   return passport;
@@ -42,7 +43,8 @@ export const initializePassport = (app) => {
             return done(null, userWithId);
           });
 
-          // TODO: guardar la imagen el puclic/img
+          // TODO: guardar la imagen el public/img
+          MailController.sendNewUserMail(newUser);
         });
       }
     )

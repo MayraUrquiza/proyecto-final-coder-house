@@ -1,15 +1,16 @@
 import db from "../daos/DAO";
+import MailController from "./mailController";
 
 class CartController {
   constructor() {
-    this.productsCollection = db('productos');
-    this.cartsCollection = db('carritos');
+    this.productsCollection = db("productos");
+    this.cartsCollection = db("carritos");
   }
 
   getCarts = async (req, res) => {
     try {
       const carts = await this.cartsCollection.getAll();
-      res.status(200).json({ carts })
+      res.status(200).json({ carts });
     } catch (error) {
       res.status(500).json({ error });
     }
@@ -32,11 +33,9 @@ class CartController {
 
     const product = await this.productsCollection.getById(productId);
 
-    if (!product)
-      throw new Error("Producto no encontrado.");
+    if (!product) throw new Error("Producto no encontrado.");
 
-    if (!product.stock)
-      throw new Error("Producto sin stock.");
+    if (!product.stock) throw new Error("Producto sin stock.");
 
     const updatedProduct = { ...product, stock: product.stock - 1 };
 
@@ -55,9 +54,7 @@ class CartController {
 
       const result = await this.cartsCollection.save(cart);
 
-      res
-        .status(200)
-        .json({ msg: "El carrito fue creado.", cart: result });
+      res.status(200).json({ msg: "El carrito fue creado.", cart: result });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -77,9 +74,11 @@ class CartController {
 
       const result = await this.cartsCollection.update(id, updatedCart);
 
-      res.status(200).json({ msg: "El carrito fue actualizado.", cart: result });
+      res
+        .status(200)
+        .json({ msg: "El carrito fue actualizado.", cart: result });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
   };
 
@@ -105,7 +104,28 @@ class CartController {
 
       const result = await this.cartsCollection.deleteProduct(id_prod, cart);
 
-      res.status(200).json({ msg: "El producto fue eliminado del carrito.", cart: result });
+      res
+        .status(200)
+        .json({ msg: "El producto fue eliminado del carrito.", cart: result });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  };
+
+  purchase = async (req, res) => {
+    try {
+      await MailController.sendPurchaseMail(
+        req.user,
+        req.body.products,
+        req.body.total
+      );
+
+      // TODO: enviar mensaje de wsp
+      res
+        .status(200)
+        .json({
+          msg: "Email enviado al administrador con el detalle de la compra",
+        });
     } catch (error) {
       res.status(500).json({ error });
     }

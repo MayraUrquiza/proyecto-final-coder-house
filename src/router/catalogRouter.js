@@ -31,7 +31,7 @@ routerCatalog.get("/carrito", async (req, res) => {
       ) / 100
     : 0;
 
-  res.render("cart", { carts, total });
+  res.render("cart", { carts, products, total });
 });
 
 export default routerCatalog;

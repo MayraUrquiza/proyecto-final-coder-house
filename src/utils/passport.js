@@ -33,7 +33,7 @@ export const initializePassport = (app) => {
             age: parseInt(req.body.age),
             address: req.body.address,
             phone: req.body.phone,
-            image: req.body.image,
+            image: req.file.originalname,
           };
 
           User.create(newUser, (err, userWithId) => {
@@ -43,7 +43,6 @@ export const initializePassport = (app) => {
             return done(null, userWithId);
           });
 
-          // TODO: guardar la imagen el public/img
           MailController.sendNewUserMail(newUser);
         });
       }

@@ -11,7 +11,8 @@ import { initializePassport } from "./utils/passport";
 import routerCatalog from "./router/catalogRouter";
 import { PORT, MONGO_ATLAS_DATABASE_URI, MODE } from "./config";
 import cluster from "cluster";
-import * as os from 'os';
+import * as os from "os";
+import routerErrors from "./router/errorRouter";
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use("/usuarios", routerUsers);
 app.use("/api/auth", routerAuth);
 app.use("/api/productos", routerProducts);
 app.use("/api/carrito", routerCarts);
+app.use("/error", routerErrors);
 
 app.use((req, res) => {
   const { method, originalUrl } = req;

@@ -1,5 +1,6 @@
 import db from "../daos/DAO";
 import MailController from "./mailController";
+import WhatsAppController from "./whatsappController";
 
 class CartController {
   constructor() {
@@ -120,12 +121,15 @@ class CartController {
         req.body.total
       );
 
-      // TODO: enviar mensaje de wsp
-      res
-        .status(200)
-        .json({
-          msg: "Email enviado al administrador con el detalle de la compra",
-        });
+      await WhatsAppController.sendPurchaseMessage(
+        req.user,
+        req.body.products,
+        req.body.total
+      );
+
+      res.status(200).json({
+        msg: "Email enviado al administrador con el detalle de la compra",
+      });
     } catch (error) {
       res.status(500).json({ error });
     }

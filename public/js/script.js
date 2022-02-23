@@ -65,6 +65,6 @@ const purchase = async (products, total) => {
     body: JSON.stringify(body),
   });
 
-  if (res.status === 200) alert("Email enviado al administrador!");
-  else alert("Hubo un error al enviar el email al administrador");
+  if (res.status === 200) alert("Notificaciones enviadas al administrador!");
+  else alert("Hubo un error al enviar las notificaciones al administrador");
 };

@@ -38,10 +38,10 @@ class WhatsAppController {
     );
 
     await this.sendMessage(
-      'Tu pedido ha sido recibido y se encuentra en proceso',
-      user.phone.toString().match(/^\+549.*$/)
-        ? user.phone
-        : `+549${user.phone}`
+      // Puede ser que hay que comprar un número para enviar SMS con Twilio? 
+      // leí que sí y por eso estoy mandando whatsapp en vez de SMS
+      "Tu pedido ha sido recibido y se encuentra en proceso",
+      user.phone.toString().match(/^\+.*$/) ? user.phone : `+549${user.phone}`
     );
   };
 }

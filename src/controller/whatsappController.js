@@ -36,6 +36,13 @@ class WhatsAppController {
       )}\n*Total $${total}*`,
       ADMIN_WHATSAPP_NUMBER
     );
+
+    await this.sendMessage(
+      'Tu pedido ha sido recibido y se encuentra en proceso',
+      user.phone.toString().match(/^\+549.*$/)
+        ? user.phone
+        : `+549${user.phone}`
+    );
   };
 }
 

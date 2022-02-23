@@ -9,7 +9,9 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { initializePassport } from "./utils/passport";
 import routerCatalog from "./router/catalogRouter";
-import { PORT, MONGO_ATLAS_DATABASE_URI } from "./config";
+import { PORT, MONGO_ATLAS_DATABASE_URI, MODE } from "./config";
+import cluster from "cluster";
+import * as os from 'os';
 
 const app = express();
 
@@ -60,7 +62,19 @@ app.use((req, res) => {
   });
 });
 
-const server = app.listen(PORT, () =>
-  console.log(`Listen on ${server.address().port}`)
-);
-server.on("error", (error) => console.log(`Error en el servidor ${error}`));
+if (MODE === "CLUSTER" && cluster.isPrimary) {
+  const CPUs = os.cpus().length;
+
+  for (let i = 0; i < CPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", () => {
+    cluster.fork();
+  });
+} else {
+  const server = app.listen(PORT, () =>
+    console.log(`Listen on ${server.address().port}`)
+  );
+  server.on("error", (error) => console.log(`Error en el servidor ${error}`));
+}

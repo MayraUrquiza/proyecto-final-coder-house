@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const PORT = process.env.PORT || 8080;
+export const MODE = process.env.MODE || "FORK";
 export const USE_DATABASE = process.env.USE_DATABASE || "mongoDB";
 export const MONGO_TIMEOUT = process.env.MONGO_TIMEOUT || 5000;
 export const MONGO_ATLAS_DATABASE_URI = process.env.MONGO_ATLAS_DATABASE_URI;
